@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bota.dao.QuesionDao">
+	<select id="selectworklist" resultType="com.bota.bean.sworklist">
+		select * from sworklist where studentid=#{studentid} and indentfy=#{indentfy}
+	</select>
+	<select id="selectquebank" resultType="com.bota.bean.quebank">
+		select * from quebank where courseNumber=#{courseNumber}
+	</select>
+	<insert id="exahomework" parameterType="com.bota.bean.squesionbank">
+		insert into squesionbank(id,courseNumber,coursename,teachername,workid,quesion,sanswer,answer,studentname,studentid,grade)
+		values (null,#{courseNumber},#{coursename},#{teachername},#{workid},#{quesion},#{sanswer},#{answer},#{studentname},#{studentid},#{grade});
+	</insert>
+	<update id="updataswlist" parameterType="com.bota.bean.sworklist">
+		update sworklist set status=#{status},grade=#{grade} where courseNumber=#{courseNumber} and workid=#{workid} and studentid=#{studentid}
+	</update>
+	<select id="selectxq" resultType="com.bota.bean.squesionbank">
+		select * from squesionbank where studentid=#{studentid} and courseNumber=#{courseNumber} and workid=#{workid}
+	</select>
+	<update id="updatestatus" parameterType="com.bota.bean.sworklist">
+		update sworklist set status=#{status} where id=#{id}
+	</update>
+	<insert id="tjurl" parameterType="com.bota.bean.data">
+		insert into data(id,courseNumber,studentid,indentfy,url)
+		values(null,#{courseNumber},#{studentid},#{indentfy},#{url})
+	</insert>
+</mapper>
